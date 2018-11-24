@@ -1,0 +1,75 @@
+#include<iostream>
+#include<map>
+#include<cstdlib>
+#include "Conjunto_Letras.h"
+using namespace std;
+
+class Bolsa_Letras{
+private:
+	vector<char> vocales;
+	vector<char> consonantes;
+	
+
+public:
+	Bolsa_Letras(){	}
+
+
+
+	void vocalAleatoria(Conjunto_Letras &c){
+		vector<char>aux = c.devuelveVocales();
+		int i,pos; 
+		if( aux.empty())
+			cout << "llega vacio" << endl;
+		else
+			cout << "llega lleno"<< endl;
+
+		while( !aux.empty()){
+			i = aux.size();
+
+			pos = rand() % i;
+
+			vocales.push_back(aux.at(pos));
+			aux.erase(aux.begin()+pos);
+	
+		}	
+
+		if(vocales.empty())
+			cout << "lo vacio" << endl;
+		else
+			cout << "lo lleno" << endl;
+	}
+	
+	vector<char> consonanteAleatoria(Conjunto_Letras &c){
+		vector<char>aux = c.devuelveConsonantes();
+		int i,pos; 
+
+		while( !aux.empty()){
+			i = aux.size();
+
+			pos = rand() % i;
+
+			consonantes.push_back(aux.at(pos));
+			aux.erase(aux.begin()+pos);
+	
+		}
+	
+		return aux;
+	}
+
+	vector<char>VOCALES(){
+		return vocales;
+	}
+
+
+	char getVocal(){
+		char a = vocales.at(0);
+		vocales.erase(vocales.begin());
+		return a;
+	}	
+
+	char getConsonante(){
+		char a = consonantes.at(0);
+		consonantes.erase(consonantes.begin());
+		return a;
+	}	
+};
