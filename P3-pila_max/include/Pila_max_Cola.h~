@@ -1,0 +1,78 @@
+#ifndef __PILA_MAX_COLA_H__
+#define __PILA_MAX_COLA_H__
+
+#include <cassert>
+#include <iostream>
+#include "cola.h"
+
+class Pila_max{
+	
+	private:
+		/** Pila de elementos */
+		Cola <elemento> pila_max;
+
+	public:
+
+	/**
+	  * @brief Se comprueba si la cola de elementos esta vacía.
+	  * @return True si es cierto que esta vacía y false en caso contrario.
+  	  */
+		inline bool vacia() const{
+			return pila_max.vacia();
+		}
+
+	/**
+      * @brief Añadir a la pila de datos.
+ 	  * @param dato Elemento a añadir a la pila en la última posición.
+  	  */
+		void poner(const int dato);
+
+	/**
+	  * @brief Constructor por defecto.
+	  */
+		Pila_max();
+	
+	/**
+	  * @brief Constructor por parámetros.
+	  * @param pila Pila de elementos para inicializar pils_max.
+	  */
+		Pila_max(const Cola <elemento> pila);
+
+	/**
+	  * @brief Constructor de copia. Inicializa el dato privado pila_max con el 
+	  * 	de un elemento de Pila_max ya creado.
+	  * @param otra_pila_max Elemento de esta clase con el cual se quiere inicializar
+	  *		pila_max.
+	  */
+		Pila_max(const Pila_max& otra_pila_max);
+
+	/**
+   	  * @brief Operador de asignación.
+	  */
+		Pila_max& operator=(const Pila_max& otra);
+
+	/**
+	  * @brief Eliminar el último elemento de la pila.
+	  */
+		void quitar();
+
+	/**
+	  * @brief Último elemento de la pila.
+ 	  * @return Elemento del tope.
+	  */
+		elemento& tope();
+
+		const elemento& tope() const;
+
+	/**
+  	  * @brief Número de elementos que contiene la pila.
+	  * @return Número de elementos.
+	  */
+
+		inline int numElementos() const{
+			return pila_max.num_elementos();
+		}
+
+};
+
+#endif // __PILA_MAX_COLA_H__

@@ -1,0 +1,120 @@
+/** 
+  * @file Cola_max.h
+  * @brief Fichero cabecera del TDA Cola_max
+  *
+  * Gestiona una secuencia de elementos con facilidades para la inserción y
+  * borrado de elementos en un extremo.
+  */
+
+#ifndef __COLA_MAX_H__
+#define __COLA_MAX_H__
+
+#include <cassert>
+#include <iostream>
+using namespace std;
+
+struct elemento{
+	int ele;   		//< Elemento menor
+	int maximo;		//<Maximo elemento
+
+	friend ostream& operator<< (ostream &os,const elemento& aux);
+};
+
+#include "Pila_max_VD.h"
+
+/**
+ *  @brief T.D.A. Cola_max
+ *
+ *
+ * Una instancia @e c del tipo de dato abstracto Cola_max sobre un dominio @e T es
+ * una sucesión finita de elementos del mismo con un funcionamiento @e FIFO
+ * (First In, First Out}). En una cola, las operaciones de inserción tienen
+ * lugar en uno de los extremos, denominado @e final de la cola, mientras que
+ * el borrado y consulta se lleva a cabo en el otro extremo, denominado 
+ * @e frente de la cola. Una cola de longitud @e n la denotamos
+
+ * - <a1,a2,a3,..,an<
+
+ * En esta cola, tendremos acceso únicamente al elemento del @e Frente,
+ * es decir, a @e a1. El borrado o consulta de un elemento será sobre @e a1,
+ * mientras que la inserción de un nuevo elemento se hará después de
+ * @e an (final de la cola).
+ *
+ * Si n=0 diremos que la cola está vacía.
+ *
+ * El espacio requerido para el almacenamiento es O(n), donde n es el número 
+ * de elementos de la cola.
+ *
+ * @author Mª del Mar Alguacil
+ * @date Noviembre 2014
+*/
+
+class Cola_max{
+	
+	private:
+	/** Cola de elementos */
+		Pila_max cola_max;
+
+	public:
+	/**
+	  * @brief Constructor por defecto.
+	  */
+		Cola_max();
+
+	/**
+	  * @brief Constructor por parámetros.
+	  * @param cola Cola de elementos para inicializar cola_max.
+	  */
+		Cola_max(const Pila_max cola);
+
+	/**
+	  * @brief Constructor de copia. Inicializa el dato privado cola_max con el 
+	  * 	de un elemento de Cola_max ya creado.
+	  * @param otra_cola_max Elemento de esta clase con el cual se quiere inicializar
+	  *		cola_max.
+	  */
+		Cola_max(const Cola_max& otra_cola_max);
+
+	/**
+	  * @brief Se comprueba si la cola de elementos esta vacía.
+	  * @return True si es cierto que esta vacía y false en caso contrario.
+  	  */
+		inline bool vacia() const{
+			return cola_max.vacia();
+		}
+
+	/**
+      * @brief Añadir a la cola de datos.
+ 	  * @param dato Elemento a añadir a la cola en la última posición.
+  	  */
+		void poner(const int dato);
+		
+	/**
+	  * @brief Eliminar el último elemento de la cola.
+	  */
+		void quitar();
+
+	/**
+	  * @brief Primer elemento de la cola.
+ 	  * @return Elemento del frente.
+	  */
+		elemento& frente();
+
+	/**
+	  * @brief Primer elemento de la cola.
+ 	  * @return Elemento del frente devuelto para solo lectura, es decir, sin
+	  * 	poder modificarse.
+	  */
+		const elemento& frente() const;
+
+	/**
+	  * @brief Tamaño de cola_max.
+ 	  * @return Número de elementos de la cola.
+	  */
+		inline int numElementos() const{
+			return cola_max.numElementos();
+		}
+
+};
+
+#endif // __COLA_MAX_H__	

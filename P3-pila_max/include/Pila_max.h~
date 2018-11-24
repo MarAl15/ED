@@ -1,0 +1,60 @@
+/**
+  * @file Pila_max.h
+  * @brief Fichero cabecera para insertar la implementación deseada.
+  *
+  * Permite modificar la implementación mediante un número del 1 al 3.
+  *
+  */
+
+#include <iostream>
+using namespace std;
+
+/**
+ *  @brief T.D.A. Pila_max
+ *
+ *
+ * Una instancia @e c del tipo de dato abstracto Pila_max sobre un dominio @e T es
+ * una sucesión finita de elementos del mismo con un funcionamiento @e LIFO
+ * (Last In, First Out}). En una pila, las operaciones de inserción tienen
+ * lugar en uno de los extremos, denominado @e final de la cola, igual que
+ * el borrado y consulta , denominado @e tope de la pila. 
+ * Una cola de longitud @e n la denotamos
+ * 
+ * - <a1,a2,a3,..,an<
+ *
+ * En esta pila, tendremos acceso únicamente al elemento del @e Tope,
+ * es decir, a @e an. El borrado o consulta de un elemento será también sobre @e an,
+ * igual que la inserción de un nuevo elemento se hará después de
+ * @e an (final de la pila_max).
+ *
+ * Si n=0 diremos que la pila está vacía.
+ *
+ * El espacio requerido para el almacenamiento es O(n), donde n es el número 
+ * de elementos de la pila.
+ *
+ * @author Mª del Mar Alguacil
+ * @date Noviembre 2014
+*/
+
+#define CUAL_COMPILO 1
+
+struct elemento{
+	int ele;   		//< Elemento menor
+	int maximo;		//<Maximo elemento
+
+	/**
+	  * @brief Sobrecarga del operador <<. Salida de un elemento.
+	  * @param os Stream de salida.
+	  * @param orig Elemento a escribir.
+	  * @post Se obtiene el elemento menor y el maximo de aux.
+	  */
+	friend ostream& operator<< (ostream &os,const elemento& aux);
+};
+
+#if CUAL_COMPILO==1
+  #include "Pila_max_VD.h"
+#elif CUAL_COMPILO==2
+  #include "Pila_max_List.h"
+#else
+  #include "Pila_max_Cola.h"
+#endif
